@@ -1,0 +1,28 @@
+
+= form_for(@booking) do |f|
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"} Select Room
+    .col-xs-6
+      = f.select :room_id, options_from_collection_for_select(@rooms, "id", "room_no", f.object.room_id), class: "form-control"
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"} Start datetime
+    .col-xs-6
+      = f.text_field :start_date, class: "form-control datetimepicker", value: (f.object.start_date.strftime("%d-%m-%Y %H:%M:%S") if f.object.start_date)
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-search-input"} End datetime
+    .col-xs-6
+      = f.text_field :end_date, class: "form-control datetimepicker", value: (f.object.end_date.strftime("%d-%m-%Y %H:%M:%S") if f.object.end_date)
+ 
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"}
+    .col-xs-10
+      = f.submit "Submit", class: "btn btn-default"
+%br/
+:javascript
+  $(function () {
+    $('.datetimepicker').datetimepicker({
+      format: 'DD-MM-YYYY HH:mm:ss'
+      autoclose: true,
+      daysOfWeekDisabled: [0,6]
+    });
+  });

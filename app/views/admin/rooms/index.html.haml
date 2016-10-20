@@ -1,0 +1,27 @@
+
+
+.btn-group-vertical.pull-left
+  %h4 List Of Rooms
+- if can? :new, Room
+  = link_to "New Room", new_room_path, class: "btn btn-default pull-right"
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{:scope => "row"} #
+      %th{:scope => "row"} Title
+      %th{:scope => "row"} Room No.
+      - if (can? :edit, Room) || (can? :destroy, Room)
+        %th{:scope => "row", :colspan => "2"} Action
+  %tbody
+    - @rooms.each_with_index do |room, index|
+      %tr
+        %td= index + 1 
+        %td= room.title
+        %td= room.room_no
+        - if can? :edit, room
+          %td= link_to 'Edit', edit_room_path(room)
+        - if can? :destroy, room
+          %td= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }
+  
+= paginate @rooms

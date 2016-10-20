@@ -1,0 +1,22 @@
+= form_for(@room) do |f|
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"} Title
+    .col-xs-6
+      = f.text_field :title, class: "form-control"
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-search-input"} Room No.
+    .col-xs-6
+      = f.text_field :room_no, class: "form-control"
+
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-search-input"} Facilities
+    .col-xs-6
+      - @facilities.each do |ff|
+        = check_box_tag "room[facilities_fields][id][]", ff.id, (@room_facility_ids.include?(ff.id) if @room_facility_ids.present?)
+        = ff.title
+      
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"}
+    .col-xs-10
+      = f.submit "Submit", class: "btn btn-default"
+%br/

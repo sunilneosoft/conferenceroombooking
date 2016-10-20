@@ -1,0 +1,33 @@
+.btn-group-vertical.pull-left
+  %h4 Listing Bookings
+- if can? :new, Booking
+  = link_to "New Booking", new_booking_path, class: "btn btn-default pull-right"
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{:scope => "row"} #
+      %th{:scope => "row"} User Name
+      %th{:scope => "row"} Room No.
+      %th{:scope => "row"} Start datetime
+      %th{:scope => "row"} End datetime
+      %th{:scope => "row"} Status
+      - if (can? :edit, Room) || (can? :destroy, Room)
+        %th{:scope => "row", :colspan => "4"} Action
+  %tbody
+    - @bookings.each_with_index do |booking, index|
+      %tr
+        %td= index + 1 
+        %td= booking.user.full_name
+        %td= booking.room.room_no
+        %td= booking.start_date
+        %td= booking.end_date
+        %td= booking.status
+        - if can? :cancel, booking
+          %td= button_to "Cancel", booking_path(id: booking.id, booking: {status: CANCEL, room_id: booking.room_id}), method: :put
+        - if can? :edit, booking
+          %td= link_to 'Edit', edit_booking_path(booking)
+        - if can? :delete, booking
+          %td= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }
+
+= paginate @bookings

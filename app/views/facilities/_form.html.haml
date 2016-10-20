@@ -1,0 +1,14 @@
+= form_for(@facility) do |f|
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"} Title
+    .col-xs-6
+      = f.text_field :title, class: "form-control"
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-search-input"} Desctription
+    .col-xs-6
+      = f.text_area :desctription, class: "form-control"      
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"}
+    .col-xs-10
+      = f.submit "Submit", class: "btn btn-default"
+%br/
