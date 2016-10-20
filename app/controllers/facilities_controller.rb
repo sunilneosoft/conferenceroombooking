@@ -23,7 +23,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update
-    return render :edit if not @facility.update(room_params)
+    return render :edit if not @facility.update(facility_params)
     redirect_to facilities_path, notice: 'room was successfully updated.'
   end
 
