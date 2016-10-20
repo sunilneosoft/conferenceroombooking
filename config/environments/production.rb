@@ -76,4 +76,23 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://conferenceroombooking.herokuapp.com' }
+
+  config.active_job.queue_adapter = :sidekiq
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp  
+  config.action_mailer.smtp_settings = {      
+    address:              '206.183.111.214',      
+    port:                 25,      
+    domain:               'wwindia.com',      
+    user_name:            'ranjeev.kumar@wwindia.com',      
+    password:             'ranjeev.123',      
+    authentication:       'plain',      
+    openssl_verify_mode:  'none'  
+  }
 end
