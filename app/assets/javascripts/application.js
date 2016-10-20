@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap.min
+//= require bootstrap
 //= require moment
-//= require bootstrap-datetimepicker.min
+//= require bootstrap-datetimepicker
 
 $(function () {
 	$('.datetimepicker').datetimepicker({

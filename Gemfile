@@ -40,6 +40,9 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'kaminari'
 gem 'cancancan', '~> 1.10'
 gem "rolify"
+#gem 'sidekiq'
+#gem 'redis', '~>3.2'
+#gem "dalli"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
