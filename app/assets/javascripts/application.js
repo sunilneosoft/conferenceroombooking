@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
@@ -21,4 +20,10 @@ $(function () {
 	$('.datetimepicker').datetimepicker({
 	  format: 'DD-MM-YYYY HH:mm:ss'
     });
+});
+
+$(document).ready(function(){
+  $("#search_keyword").keyup(function(){
+   $("#search_form").submit();
+ });
 });

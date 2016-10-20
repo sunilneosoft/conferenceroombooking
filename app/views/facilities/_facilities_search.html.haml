@@ -1,0 +1,9 @@
+.col-sm-12
+  .col-sm-4
+  .col-sm-4
+    -unless @search_result.blank?
+      -@search_result.each do |res|
+        = radio_button_tag "booking[room_id]", res.id#, (@room_facility_ids.include?(ff.id) if @room_facility_ids.present?)
+        =res.title
+        =res.room_no
+        .br
