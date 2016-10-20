@@ -53,7 +53,7 @@ class BookingsController < ApplicationController
     end
 
     def verify_room
-      redirect_to new_booking_path, warning: 'Room does not exist.' unless Room.find_by_id(booking_params[:room_id])
+      #redirect_to new_booking_path, warning: 'Room does not exist.' unless Room.find_by_id(booking_params[:room_id])
     end
 
     def rooms_list

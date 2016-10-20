@@ -32,6 +32,10 @@ class FacilitiesController < ApplicationController
     redirect_to facilities_path, notice: 'room was successfully destroyed.'
   end
 
+  def search
+    @search_result = Facility.search(params)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_facility

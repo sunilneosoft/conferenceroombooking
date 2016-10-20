@@ -11,6 +11,7 @@
       %th{:scope => "row"} #
       %th{:scope => "row"} Title
       %th{:scope => "row"} Room No.
+      %th{:scope => "row"} Facilities
       - if (can? :edit, Room) || (can? :destroy, Room)
         %th{:scope => "row", :colspan => "2"} Action
   %tbody
@@ -19,6 +20,7 @@
         %td= index + 1 
         %td= room.title
         %td= room.room_no
+        %td= room.facilities.pluck(:title).join(', ')
         - if can? :edit, room
           %td= link_to 'Edit', edit_room_path(room)
         - if can? :destroy, room

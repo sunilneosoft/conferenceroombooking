@@ -1,7 +1,12 @@
 #require 'sidekiq/web'
 Rails.application.routes.draw do
   
-  resources :facilities
+  resources :facilities do
+  	collection do
+      post 'search'
+    end
+  end
+  
   root to: "home#index"
   
   devise_for :users

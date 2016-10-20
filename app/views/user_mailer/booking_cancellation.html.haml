@@ -1,1 +1,7 @@
-cancel
+%h3 Your booking has been cancelled.
+Room Title
+%h4= @booking.room.title
+Room No
+%h4= @booking.room.room_no
+Start Date
+%h4= DateTime.parse(@booking.start_date.to_s).strftime("%d-%m-%Y %I:%M:%S %p")

@@ -1,9 +1,48 @@
 
+/ = form_for(@booking) do |f|
+/   .form-group.row
+/     %label.col-xs-2.col-form-label{:for => "example-text-input"} Select Room
+/     .col-xs-6
+/       = f.select :room_id, options_from_collection_for_select(@rooms, "id", "room_no", f.object.room_id), class: "form-control"
+/   .form-group.row
+/     %label.col-xs-2.col-form-label{:for => "example-text-input"} Start datetime
+/     .col-xs-6
+/       = f.text_field :start_date, class: "form-control datetimepicker", value: (f.object.start_date.strftime("%d-%m-%Y %H:%M:%S") if f.object.start_date)
+/   .form-group.row
+/     %label.col-xs-2.col-form-label{:for => "example-search-input"} End datetime
+/     .col-xs-6
+/       = f.text_field :end_date, class: "form-control datetimepicker", value: (f.object.end_date.strftime("%d-%m-%Y %H:%M:%S") if f.object.end_date)
+ 
+/   .form-group.row
+/     %label.col-xs-2.col-form-label{:for => "example-text-input"}
+/     .col-xs-10
+/       = f.submit "Submit", class: "btn btn-default"
+/ %br/
+
+
+= form_tag(search_facilities_path, remote: true, method: 'post', id:'search_form') do
+  .form-group.row
+    %label.col-xs-2.col-form-label{:for => "example-text-input"} Search Rooms by facilities
+    .col-xs-5.p-l-0
+      .input-group.search
+        %span.input-group-btn
+          %button#btn-height.btn.btn-default{:style => "height: 35px;", :type => "button"}
+            %i.glyphicon.glyphicon-search
+        = text_field_tag :search_keyword, nil, placeholder: 'search for...', class: 'form-control'
 = form_for(@booking) do |f|
   .form-group.row
-    %label.col-xs-2.col-form-label{:for => "example-text-input"} Select Room
-    .col-xs-6
-      = f.select :room_id, options_from_collection_for_select(@rooms, "id", "room_no", f.object.room_id), class: "form-control"
+    .search_result
+  / .form-group.row
+  /   %label.col-xs-2.col-form-label{:for => "example-text-input"} Search Rooms by facilities
+  /   .col-xs-6
+  /     = search_field_tag 'name',"", class: "form-control",remote:true
+  - if f.object.room
+    .form-group.row
+      .br
+      %label.col-xs-2.col-form-label{:for => "example-text-input"} Booked Room
+      .col-xs-6
+        = f.object.room.room_no
+        =# f.select :room_id, options_from_collection_for_select(@rooms, "id", "room_no", f.object.room_id), class: "form-control"
   .form-group.row
     %label.col-xs-2.col-form-label{:for => "example-text-input"} Start datetime
     .col-xs-6
@@ -12,17 +51,9 @@
     %label.col-xs-2.col-form-label{:for => "example-search-input"} End datetime
     .col-xs-6
       = f.text_field :end_date, class: "form-control datetimepicker", value: (f.object.end_date.strftime("%d-%m-%Y %H:%M:%S") if f.object.end_date)
- 
+
   .form-group.row
     %label.col-xs-2.col-form-label{:for => "example-text-input"}
     .col-xs-10
       = f.submit "Submit", class: "btn btn-default"
 %br/
-:javascript
-  $(function () {
-    $('.datetimepicker').datetimepicker({
-      format: 'DD-MM-YYYY HH:mm:ss'
-      autoclose: true,
-      daysOfWeekDisabled: [0,6]
-    });
-  });

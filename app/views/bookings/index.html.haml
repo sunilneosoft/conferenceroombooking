@@ -23,11 +23,11 @@
         %td= date_format(booking.start_date)
         %td= date_format(booking.end_date)
         %td= booking.status
-        - if can? :cancel, booking && current_user.id == booking.user.id
+        - if (can? :cancel, booking) && current_user.id == booking.user.id
           %td= button_to "Cancel", booking_path(id: booking.id, booking: {status: CANCEL, room_id: booking.room_id}), method: :put
-        - if can? :edit, booking && current_user.id == booking.user.id
+        - if (can? :edit, booking) && current_user.id == booking.user.id
           %td= link_to 'Edit', edit_booking_path(booking)
-        - if can? :delete, booking && current_user.id == booking.user.id
+        - if (can? :delete, booking) && current_user.id == booking.user.id
           %td= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }
 
 = paginate @bookings
