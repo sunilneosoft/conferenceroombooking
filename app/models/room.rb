@@ -11,8 +11,10 @@ class Room < ActiveRecord::Base
   validates :room_no, :title, presence: true
 
 	def create_facilities
-		self.facilities.delete_all
-		facilitites = Facility.where(id: self.facilities_fields[:id])
-		self.facilities << facilitites
+		if self.facilities_fields
+		  self.facilities.delete_all
+		  facilitites = Facility.where(id: self.facilities_fields[:id])
+		  self.facilities << facilitites
+		end
 	end
 end

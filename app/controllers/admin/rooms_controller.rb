@@ -47,9 +47,6 @@ class Admin::RoomsController < ApplicationController
       @room = Room.find(params[:id])
     end
     
-    def room_params_without_facilities
-      room_params - room_params[:facilities_attributes]
-    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit!
